@@ -5,7 +5,9 @@
   "author": "Dailton Bastos <dailtonbastos@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/server.js"
+    "start": "nodemon src/server.js",
+    "knex:migrate": "knex --knexfile src/config/knexfile.js migrate:latest",
+    "knex:migrate:rollback": "knex --knexfile src/config/knexfile.js migrate:rollback"
   },
   "devDependencies": {
     "eslint": "^7.6.0",
@@ -17,6 +19,8 @@
     "prettier": "^2.0.5"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "knex": "^0.21.2",
+    "pg": "^8.3.0"
   }
 }
