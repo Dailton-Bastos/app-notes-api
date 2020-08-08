@@ -28,7 +28,7 @@ exports.post = async (req, res, next) => {
       });
     }
 
-    if (!(await checkPassword(password, user.password))) {
+    if (!(await checkPassword(password.toString(), user.password))) {
       return res.status(401).json({
         error: 'Incorrect email or password!',
       });
