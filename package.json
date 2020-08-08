@@ -7,7 +7,8 @@
   "scripts": {
     "start": "nodemon src/server.js",
     "knex:migrate": "knex --knexfile src/config/knexfile.js migrate:latest",
-    "knex:migrate:rollback": "knex --knexfile src/config/knexfile.js migrate:rollback"
+    "knex:migrate:rollback": "knex --knexfile src/config/knexfile.js migrate:rollback",
+    "knex:seed": "knex --knexfile src/config/knexfile.js seed:run"
   },
   "devDependencies": {
     "eslint": "^7.6.0",
@@ -21,6 +22,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.2",
     "pg": "^8.3.0",
