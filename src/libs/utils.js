@@ -33,4 +33,20 @@ module.exports = {
 
     return users;
   },
+
+  addFakerNotes() {
+    const notes = [];
+
+    for (let i = 0; i < 20; i += 1) {
+      const note = {
+        title: faker.lorem.sentence(),
+        body: faker.lorem.paragraph(),
+        user_id: Math.floor(Math.random() * (5 - 1 + 1)) + 1,
+      };
+
+      notes.push(note);
+    }
+
+    return notes;
+  },
 };
