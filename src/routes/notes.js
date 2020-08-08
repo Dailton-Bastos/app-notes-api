@@ -4,14 +4,16 @@ const routes = new Router();
 
 const NoteController = require('../app/controllers/NoteController');
 
-const { post } = require('../app/validators/note');
+const { post, update } = require('../app/validators/note');
 
 const authMiddleware = require('../app/middlewares/auth');
 
 routes.use(authMiddleware);
 
-routes.get('/', NoteController.index);
-routes.get('/:id', NoteController.show);
-routes.post('/', post, NoteController.create);
+routes
+  .get('/', NoteController.index)
+  .get('/:id', NoteController.show)
+  .post('/', post, NoteController.create)
+  .put('/:id', update, NoteController.update);
 
 module.exports = routes;

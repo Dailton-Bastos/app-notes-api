@@ -74,4 +74,41 @@ module.exports = {
       });
     }
   },
+
+  async update(req, res) {
+    const { id } = req.params;
+
+    const { title, body } = req.body;
+
+    try {
+      const results = await db('notes').where({ id });
+
+      const note = results[0];
+
+      if (!note) {
+        return res.status(400).json({
+          error: 'Note not found!',
+        });
+      }
+
+      if (!isOwnerNote(req.userId, note)) {
+        return res.status(403).json({
+          error: 'Permission denied!',
+        });
+      }
+
+      if (title || body) {
+        await db('notes').where({ id }).update({
+          title,
+          body,
+        });
+      }
+
+      return res.status(201).send();
+    } catch (error) {
+      return res.status(500).json({
+        error: 'Unexpected error while updating the note!',
+      });
+    }
+  },
 };
