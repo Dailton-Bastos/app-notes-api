@@ -10,6 +10,7 @@ const authMiddleware = require('../app/middlewares/auth');
 
 routes.use(authMiddleware);
 
+routes.get('/', NoteController.index);
 routes.get('/:id', NoteController.show);
 routes.post('/', post, NoteController.create);
 

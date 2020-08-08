@@ -3,6 +3,26 @@ const db = require('../../database/connection');
 const { isOwnerNote } = require('../../libs/utils');
 
 module.exports = {
+  async index(req, res) {
+    const { page = 1 } = req.query;
+    const user_id = req.userId;
+
+    try {
+      const notes = await db('notes')
+        .select('notes.*')
+        .where({ user_id })
+        .orderBy('notes.created_at', 'desc')
+        .limit(5)
+        .offset((page - 1) * 5);
+
+      return res.json(notes);
+    } catch (error) {
+      return res.status(500).json({
+        error: 'Unexpected error to get notes list!',
+      });
+    }
+  },
+
   async create(req, res) {
     const { title, body } = req.body;
 
