@@ -14,6 +14,7 @@ routes
   .get('/', NoteController.index)
   .get('/:id', NoteController.show)
   .post('/', post, NoteController.create)
-  .put('/:id', update, NoteController.update);
+  .put('/:id', update, NoteController.update)
+  .delete('/:id', NoteController.destroy);
 
 module.exports = routes;

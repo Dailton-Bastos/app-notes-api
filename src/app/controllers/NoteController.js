@@ -111,4 +111,38 @@ module.exports = {
       });
     }
   },
+
+  async destroy(req, res) {
+    const { id } = req.params;
+
+    try {
+      const trx = await db.transaction();
+
+      const results = await trx('notes').where({ id });
+
+      const note = results[0];
+
+      if (!note) {
+        return res.status(400).json({
+          error: 'Note not found!',
+        });
+      }
+
+      if (!isOwnerNote(req.userId, note)) {
+        return res.status(403).json({
+          error: 'Permission denied!',
+        });
+      }
+
+      await trx('notes').where({ id }).del();
+
+      await trx.commit();
+
+      return res.status(204).send();
+    } catch (error) {
+      return res.status(500).json({
+        error: 'Unexpected error while delete the note!',
+      });
+    }
+  },
 };
