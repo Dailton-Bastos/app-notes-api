@@ -4,9 +4,9 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      database: 'notes',
-      user: 'postgres',
-      password: 'docker',
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
     },
     migrations: {
       tableName: 'knex_migrations',
