@@ -98,10 +98,15 @@ module.exports = {
       }
 
       if (title || body) {
-        await db('notes').where({ id }).update({
-          title,
-          body,
-        });
+        const updatedNote = await db('notes')
+          .where({ id })
+          .update({
+            title,
+            body,
+          })
+          .returning('*');
+
+        res.json(updatedNote[0]);
       }
 
       return res.status(201).send();
