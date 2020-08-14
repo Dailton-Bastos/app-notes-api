@@ -15,7 +15,7 @@ module.exports = {
         .limit(5)
         .offset((page - 1) * 5);
 
-      return res.json(notes);
+      return res.status(200).json(notes);
     } catch (error) {
       return res.status(500).json({
         error: 'Unexpected error to get notes list!',
@@ -56,7 +56,7 @@ module.exports = {
       const note = results[0];
 
       if (!note) {
-        return res.status(400).json({
+        return res.status(404).json({
           error: 'Note not found!',
         });
       }
@@ -67,7 +67,7 @@ module.exports = {
         });
       }
 
-      return res.json(note);
+      return res.status(200).json(note);
     } catch (error) {
       return res.status(500).json({
         error: 'Unexpected error while get the note!',
