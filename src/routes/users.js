@@ -4,8 +4,12 @@ const routes = new Router();
 
 const UserController = require('../app/controllers/UserController');
 
-const { post } = require('../app/validators/user');
+const authMiddleware = require('../app/middlewares/auth');
 
-routes.post('/register', post, UserController.create);
+const { post, update } = require('../app/validators/user');
+
+routes
+  .post('/register', post, UserController.create)
+  .put('/', authMiddleware, update, UserController.update);
 
 module.exports = routes;
