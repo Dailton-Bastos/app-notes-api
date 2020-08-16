@@ -10,6 +10,7 @@ const { post, update } = require('../app/validators/user');
 
 routes
   .post('/register', post, UserController.create)
-  .put('/', authMiddleware, update, UserController.update);
+  .put('/', authMiddleware, update, UserController.update)
+  .delete('/', authMiddleware, UserController.destroy);
 
 module.exports = routes;

@@ -50,4 +50,16 @@ module.exports = {
       return next(error);
     }
   },
+
+  async destroy(req, res, next) {
+    try {
+      const id = req.userId;
+
+      await db('users').where({ id }).del();
+
+      return res.status(201).send();
+    } catch (error) {
+      return next(error);
+    }
+  },
 };
