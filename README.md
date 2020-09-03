@@ -4,7 +4,7 @@
   Example NodeJS API using Knex.js Query Builder
 </p>
 
-## :rocket: Tecnologias
+## :rocket: Technologies
 
 This project was developed with the following technologies:
 
